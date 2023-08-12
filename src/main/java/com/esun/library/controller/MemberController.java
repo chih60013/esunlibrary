@@ -1,5 +1,6 @@
 package com.esun.library.controller;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,6 +37,12 @@ public class MemberController {
 
 	@PostMapping("/member/post")
 	public String postMember(@ModelAttribute("member") Member member, Model model) {
+		if (memberService.isAccountDuplicate(member.getMemberPhoneNumber())) {
+	        model.addAttribute("errorMessage", "輸入號碼重複，已註冊過，請重新確認");
+	        return "member/addMember"; // 返回註冊頁面並顯示錯誤訊息
+	    }
+		
+		
 		memberService.addMember(member);
 		model.addAttribute("member", member);
 		return "redirect:/member/memberAll";
@@ -69,7 +76,13 @@ public class MemberController {
 		Optional<Member> memberOpt = memberRepository.findByMemberPhoneNumber(member.getMemberPhoneNumber());
 		if (memberOpt.isPresent() && memberOpt.get().getMemberPassword().equals(member.getMemberPassword())) {
 			session.setAttribute("member", memberOpt.get());
-
+			
+			Member loggedInMember = memberOpt.get();
+			// 更新最後登入時間
+			loggedInMember.setMemberLastLoginTime(new Date());
+			memberRepository.save(loggedInMember);
+			session.setAttribute("member", loggedInMember);
+			
 			String previousUrl = (String) session.getAttribute("previousUrl");
 			// 如果上一個頁面是註冊頁面，則導向首頁。
 			if (previousUrl != null && previousUrl.contains("/member/register")) {

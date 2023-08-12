@@ -12,6 +12,7 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -27,20 +28,19 @@ public class Member {
 	private Integer memberId;
 	
 	
-	
-    @Column(name="member_PhoneNumber",nullable = false)
+	@NotBlank
+    @Column(name="member_PhoneNumber",nullable = false,unique = true)
     private String memberPhoneNumber; 
 
-	
+	@NotBlank
     @Column(name="member_Password", columnDefinition = "nvarchar(20)",nullable = false)
     private String memberPassword; 
     
-    
+	@NotBlank
     @Column(name="member_Name", columnDefinition = "nvarchar(30)",nullable = false)
     private String memberName; 
 	
-//    @Column(name="member_Token")
-//	private String memberToken;
+
 
     @Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
@@ -107,14 +107,6 @@ public class Member {
 	}
 
 
-//	public String getMemberToken() {
-//		return memberToken;
-//	}
-//
-//
-//	public void setMemberToken(String memberToken) {
-//		this.memberToken = memberToken;
-//	}
 
 
 	public Date getMemberRegistrationTime() {

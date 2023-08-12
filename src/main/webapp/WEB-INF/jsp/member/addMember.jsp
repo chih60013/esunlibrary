@@ -23,22 +23,26 @@
 
 <body class="sb-nav-fixed">
 	<div id="layoutSidenav">
-	
-	<!-- ======= SiderNav ======= -->
+
+		<!-- ======= SiderNav ======= -->
 		<jsp:include page="../layout/sideNavForBack.jsp"></jsp:include>
 		<!-- End SiderNav -->
-	
+
 	</div>
-	<div >
+	<div>
 		<main id="main">
 
-			<h1 class="center-content" >新增會員資料</h1>
+			<h1 class="center-content">新增會員資料</h1>
 			<div class="center-content">
 				<form:form method="post" modelAttribute="member"
 					action="${contextRoot}/member/post">
 					<form:label path="memberPhoneNumber">會員電話(將會做帳號使用)</form:label>
 					<form:input path="memberPhoneNumber" type="text" required="true" />
 					<br>
+
+					<c:if test="${not empty errorMessage}">
+						<div style="color: red;">${errorMessage}</div>
+					</c:if>
 					<form:label path="memberPassword">會員密碼</form:label>
 					<form:input path="memberPassword" type="password" required="true" />
 					<br>
@@ -57,9 +61,9 @@
 	<!-- ======= Footer ======= -->
 	<jsp:include page="../layout/footerForBack.jsp"></jsp:include>
 	<!-- End Footer -->
-	
-	
-	
+
+
+
 
 </body>
 </html>
