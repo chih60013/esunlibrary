@@ -110,23 +110,27 @@
 							<div class="sb-sidenav-collapse-arrow">
 								<i class="fas fa-angle-down"></i>
 							</div>
-						</a> 
-						
-						
-							<div class="collapse" id="collapseBooks"
+						</a>
+
+
+						<div class="collapse" id="collapseBooks"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link"
 									href="${pageContext.request.contextPath}/book/addBook">新增書籍</a>
 								<a class="nav-link"
 									href="${pageContext.request.contextPath}/book/bookAll">書籍總表</a>
+								<a class="nav-link"
+									href="${pageContext.request.contextPath}/book/addBookStatus">書籍狀態新增</a>
+								<a class="nav-link"
+									href="${pageContext.request.contextPath}/book/bookStatusAll">書籍狀態總表</a>
 							</nav>
 
 
 						</div>
-						
-						
-						
+
+
+
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 							data-bs-target="#collapsePages" aria-expanded="false"
 							aria-controls="collapsePages">
