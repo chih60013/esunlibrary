@@ -56,7 +56,8 @@
 								href="${contextRoot}/member/login">Login</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a class="dropdown-item" href="${contextRoot}/member/logout">Logout</a></li>
+							<li><a class="dropdown-item"
+								href="${contextRoot}/member/logout">Logout</a></li>
 							<li><span class="dropdown-item">Welcome,
 									${sessionScope.member.memberName}</span></li>
 						</c:otherwise>
@@ -78,17 +79,16 @@
 						</a>
 						<div class="sb-sidenav-menu-heading">Interface</div>
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-							data-bs-target="#collapseLayouts" aria-expanded="false"
-							aria-controls="collapseLayouts">
+							data-bs-target="#collapseMembers" aria-expanded="false"
+							aria-controls="collapseMembers">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-columns"></i>
 							</div> 會員系統
 							<div class="sb-sidenav-collapse-arrow">
 								<i class="fas fa-angle-down"></i>
 							</div>
-
 						</a>
-						<div class="collapse" id="collapseLayouts"
+						<div class="collapse" id="collapseMembers"
 							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link"
@@ -99,6 +99,34 @@
 
 
 						</div>
+
+
+						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+							data-bs-target="#collapseBooks" aria-expanded="false"
+							aria-controls="collapseBooks">
+							<div class="sb-nav-link-icon">
+								<i class="fas fa-columns"></i>
+							</div> 書籍系統
+							<div class="sb-sidenav-collapse-arrow">
+								<i class="fas fa-angle-down"></i>
+							</div>
+						</a> 
+						
+						
+							<div class="collapse" id="collapseBooks"
+							aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+							<nav class="sb-sidenav-menu-nested nav">
+								<a class="nav-link"
+									href="${pageContext.request.contextPath}/book/addBook">新增書籍</a>
+								<a class="nav-link"
+									href="${pageContext.request.contextPath}/book/bookAll">書籍總表</a>
+							</nav>
+
+
+						</div>
+						
+						
+						
 						<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 							data-bs-target="#collapsePages" aria-expanded="false"
 							aria-controls="collapsePages">
@@ -177,7 +205,8 @@
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
 		crossorigin="anonymous"></script>
-	<script src="${contextRoot}/backTemplate/assets/demo/chart-area-demo.js"></script>
+	<script
+		src="${contextRoot}/backTemplate/assets/demo/chart-area-demo.js"></script>
 	<script src="${contextRoot}/backTemplate/assets/demo/chart-bar-demo.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
