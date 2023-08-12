@@ -12,13 +12,13 @@
         <meta name="author" content="" />
         <title>Dashboard - SB Admin</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
-        <link href="../Back/css/styles.css" rel="stylesheet" />
+        <link href="../backTemplate/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="/chihstock/">ESUN圖書館首頁</a>
+            <a class="navbar-brand ps-3" href="/esunlibrary">ESUN圖書館首頁</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
@@ -54,15 +54,15 @@
                             <div class="sb-sidenav-menu-heading">Interface</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                商品建立
+                                會員系統
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
 
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="layout-static.html">Static Navigation</a>
-                                    <a class="nav-link" href="${pageContext.request.contextPath}/commodity/add">新增商品</a>
-                                	<a class="nav-link" href="${pageContext.request.contextPath}/commodity/ShowAll">查看商品訊息</a>
+                                    <a class="nav-link" href="${pageContext.request.contextPath}/member/register">註冊會員</a>
+                                	<a class="nav-link" href="${pageContext.request.contextPath}/member/memberAll">查看會員</a>
                                 </nav>
                                 
                                 
@@ -123,11 +123,11 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="../Back/js/scripts.js"></script>
+        <script src="../backTemplate/js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="../Back/assets/demo/chart-area-demo.js"></script>
-        <script src="../Back/assets/demo/chart-bar-demo.js"></script>
+        <script src="../backTemplate/assets/demo/chart-area-demo.js"></script>
+        <script src="../backTemplate/assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-        <script src="../Back/js/datatables-simple-demo.js"></script>
+        <script src="../backTemplate/js/datatables-simple-demo.js"></script>
     </body>
 </html>

@@ -17,40 +17,40 @@ import javax.validation.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name="users")
+public class Users {
 
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "user_Id")
+	@Column(name="user_Id")
 	private Integer userId;
 	
 	
 	@NotBlank
-    @Column(name="user_PhoneNumber"  ,nullable = false, unique = true)
+    @Column(name="user_PhoneNumber",nullable = false, unique = true)
     private String userPhoneNumber; 
 
     @NotBlank
-    @Column(name="user_Password" ,nullable = false)
+    @Column(name="user_Password", columnDefinition = "nvarchar(20)",nullable = false)
     private String userPassword; 
     
     @NotBlank
-    @Column(name="user_Name" ,nullable = false)
+    @Column(name="user_Name", columnDefinition = "nvarchar(30)",nullable = false)
     private String userName; 
     
     
-	@Column(name = "user_Token")
+	@Column(name="user_Token")
 	private String userToken;
 
     @Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
 	@Column(name = "user_RegistrationTime", columnDefinition = "datetime")
-    private Date userregistrationTime; // 註冊日期時間
+    private Date userRegistrationTime; // 註冊日期時間
 
     @Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
-	@Column(name = "user_LastLoginTime", columnDefinition = "datetime")
+	@Column(name="user_LastLoginTime", columnDefinition = "datetime")
     private Date userLastLoginTime; // 最後登入日期時間
 	
 
@@ -59,8 +59,8 @@ public class User {
 	@PrePersist
 	@PreUpdate
 	public void onCreateOrUpdate() {
-	    if (userregistrationTime == null) {
-	    	userregistrationTime = new Date();
+	    if (userRegistrationTime == null) {
+	    	userRegistrationTime = new Date();
 	    }
 	    if (userLastLoginTime == null) {
 	    	userLastLoginTime = new Date();
@@ -128,19 +128,13 @@ public class User {
 
 
 
-	public Date getUserregistrationTime() {
-		return userregistrationTime;
+	public Date getUserRegistrationTime() {
+		return userRegistrationTime;
 	}
 
-
-
-
-	public void setUserregistrationTime(Date userregistrationTime) {
-		this.userregistrationTime = userregistrationTime;
+	public void setUserRegistrationTime(Date userRegistrationTime) {
+		this.userRegistrationTime = userRegistrationTime;
 	}
-
-
-
 
 	public Date getUserLastLoginTime() {
 		return userLastLoginTime;
