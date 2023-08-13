@@ -1,6 +1,9 @@
 package com.esun.library.models.services;
 
 import java.util.List;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +32,52 @@ public class BookInventoryService {
 		List<BookInventory> findAllBookInventory = bookInventoryRepository.findAll();
 		return findAllBookInventory;
 	}
+	
+	
+	//透過bookInventoryId 來找書籍
+	
+	public BookInventory findByBookInventoryId(Integer bookInventoryId) {
+		Optional<BookInventory>	option = bookInventoryRepository.findById(bookInventoryId);
+		
+		if(option.isEmpty()) {
+			return null;
+		}
+		return option.get();
+	}
+		
+		
+		
+	
+	
+	
+	
+	
+	
+	
+//	透過 id 更新
+	
+	@Transactional
+	public BookInventory updateBookInventoryById (Integer bookInventoryId , BookInventory newbookInventory) {
+		Optional<BookInventory> option = bookInventoryRepository.findById(bookInventoryId);
+		if(option.isPresent()) {
+			BookInventory bookInventory = option.get();
+			bookInventory.setBookStatus(newbookInventory.getBookStatus()); //也只有書籍狀態能更改
+			return bookInventory;
+			
+		}
+		return null;
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

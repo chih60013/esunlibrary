@@ -1,8 +1,11 @@
 package com.esun.library.models.beans.books;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,7 +32,10 @@ public class Book {
 	private String bookIntroduction;
 	
 	
-	
+	@OneToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "fk_bookInventoryId"  )
+	private BookInventory bookInventory;
+	//串接  多對一  書籍庫存狀態資訊
 	
 	
 	
@@ -114,6 +120,28 @@ public class Book {
 
 	public void setBookIntroduction(String bookIntroduction) {
 		this.bookIntroduction = bookIntroduction;
+	}
+
+
+
+
+
+
+
+
+	public BookInventory getBookInventory() {
+		return bookInventory;
+	}
+
+
+
+
+
+
+
+
+	public void setBookInventory(BookInventory bookInventory) {
+		this.bookInventory = bookInventory;
 	}
 
 

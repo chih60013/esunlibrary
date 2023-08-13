@@ -22,7 +22,7 @@
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!-- Navbar Brand-->
-		<a class="navbar-brand ps-3" href="/esunlibrary">ESUN圖書館首頁</a>
+		<a class="navbar-brand ps-3" href="/esunlibrary/book/bookInventoryAll">ESUN圖書館首頁</a>
 		<!-- Sidebar Toggle-->
 		<button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
 			id="sidebarToggle" href="#!">
@@ -32,9 +32,7 @@
 		<form
 			class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
 			<div class="input-group">
-				<input class="form-control" type="text" placeholder="Search for..."
-					aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-				<button class="btn btn-primary" id="btnNavbarSearch" type="button">
+				
 					<i class="fas fa-search"></i>
 				</button>
 				<!-- 搜尋欄 -->
@@ -128,7 +126,8 @@
 									href="${pageContext.request.contextPath}/book/addBookInventory">新增書籍庫存狀態</a>
 								<a class="nav-link"
 									href="${pageContext.request.contextPath}/book/bookInventoryAll">查詢書籍庫存狀態</a>
-
+								<a class="nav-link"
+									href="${pageContext.request.contextPath}/book/editBookInventory">修改書籍庫存狀態</a>
 							</nav>
 
 
@@ -197,8 +196,8 @@
 					</div>
 				</div>
 				<div class="sb-sidenav-footer">
-					<div class="small">Logged in as:</div>
-					Start Bootstrap
+					<div class="small">ESUN Llbrary</div>
+					Write by Chen Po Chih
 				</div>
 			</nav>
 		</div>

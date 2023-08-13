@@ -8,7 +8,7 @@
 
 <div id="layoutSidenav">
 	<!-- ======= SiderNav ======= -->
-	<jsp:include page="../layout/sideNavForBack.jsp"></jsp:include>
+	<jsp:include page="../layout/sideNavForBack.jsp"></jsp:include>-->
 	<!-- End SiderNav -->
 
 
@@ -21,10 +21,10 @@
 </head>
 
 <body>
-			<h1 class="mb-3">書本資訊</h1>
-			<form action="${contextRoot}/book/addBook">
-				<button type="submit" class="btn btn-primary mb-3">新增</button>
-			</form>
+	<h1 class="mb-3">書本資訊</h1>
+	<form action="${contextRoot}/book/addBook">
+		<button type="submit" class="btn btn-primary mb-3">新增</button>
+	</form>
 
 	<table class="table table-striped" id="datatablesSimple">
 		<thead class="thead-dark">
@@ -33,8 +33,9 @@
 				<th scope="col">書本名稱</th>
 				<th scope="col">書本作家</th>
 				<th scope="col">書本敘述</th>
-				<th scope="col">編輯</th>
-				<th scope="col">刪除</th>
+				
+				
+
 			</tr>
 
 		</thead>
@@ -46,24 +47,8 @@
 					<td>${book.bookName}</td>
 					<td>${book.bookAuthor}</td>
 					<td>${book.bookIntroduction}</td>
-
 					
 					
-					<td><form:form
-							action="${contextRoot}/book/editBook"
-							method="get">
-							<input type="hidden" name="bookISBN"
-								value="${book.bookISBN}">
-							<button type="submit" class="btn btn-warning">編輯</button>
-
-
-						</form:form></td>
-					<td><form:form action="${contextRoot}/book/deleteBook"
-							method="DELETE">
-							<input type="hidden" name="bookISBN"
-								value="${book.bookISBN}">
-							<button type="submit" class="btn btn-danger">刪除</button>
-						</form:form></td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -74,4 +59,4 @@
 	<!-- End Footer -->
 
 </body>
-</html>
+	</html>

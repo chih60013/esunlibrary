@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.esun.library.models.beans.books.Book;
 import com.esun.library.models.beans.books.BookInventory;
@@ -70,6 +72,23 @@ public class BookInventoryController {
 	
 	
 	
+	//修改書籍庫存狀態  (U)
+	@GetMapping("/book/editBookInventory")
+	public String editBookInventory(@RequestParam("bookInventoryId")Integer bookInventoryId, Model model) {
+		BookInventory bookInventory =bookInventoryService.findByBookInventoryId(bookInventoryId);
+		List<BookStatus> bookStatusList = bookStatusService.findAllBookStatus();
+		model.addAttribute("bookStatusList",bookStatusList);		
+		//給清單
+		model.addAttribute("bookInventory",bookInventory);
+		return "book/editBookInventory";
+	}
+	
+	@PutMapping("/book/editBookInventory")
+	public String updateBookInventory(@ModelAttribute("bookInventory") BookInventory bookInventory, Model model) {
+	   
+	   bookInventoryService.updateBookInventoryById(bookInventory.getBookInventoryId(), bookInventory);
+	    return "redirect:/book/bookAll"; 
+	}
 	
 	
 	

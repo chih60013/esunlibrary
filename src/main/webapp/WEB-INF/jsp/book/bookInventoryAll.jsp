@@ -31,10 +31,11 @@
 			<tr>
 				<th scope="col">書本庫存Id</th>
 				<th scope="col">書本ISBN</th>
+				<th scope="col">書本名稱</th>
 				<th scope="col">書本購買日期</th>
 				<th scope="col">書本狀態</th>
 				<th scope="col">編輯</th>
-				<th scope="col">刪除</th>
+				
 			</tr>
 
 		</thead>
@@ -44,23 +45,23 @@
 				<tr>
 					<td>${bookInventory.bookInventoryId}</td>
 					<td>${bookInventory.book.bookISBN}</td>
+					<td>${bookInventory.book.bookName}</td>
 					<td>${bookInventory.bookPurchaseDate}</td>
 					<td>${bookInventory.bookStatus.bookStatusName}</td>
 
 
 
-					<td><form:form action="${contextRoot}/book/editBook"
-							method="get">
-							<input type="hidden" name="bookISBN" value="${book.bookISBN}">
-							<button type="submit" class="btn btn-warning">編輯</button>
-
-
-						</form:form></td>
-					<td><form:form action="${contextRoot}/book/deleteBook"
-							method="DELETE">
-							<input type="hidden" name="bookISBN" value="${book.bookISBN}">
-							<button type="submit" class="btn btn-danger">刪除</button>
-						</form:form></td>
+					<td><c:if test="${empty member}">
+							<a href="${contextRoot}/member/login" class="btn btn-primary">登入會員方可借書</a>
+						</c:if>
+						<c:if test="${not empty member}">
+							<form:form action="${contextRoot}/book/editBook" method="get">
+								<input type="hidden" name="bookISBN" value="${book.bookISBN}">
+								<button type="submit" class="btn btn-primary">借閱</button>
+						</form:form>
+						</c:if>
+						</td>
+					
 				</tr>
 			</c:forEach>
 		</tbody>

@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.esun.library.models.beans.books.Book;
+import com.esun.library.models.beans.books.BookInventory;
 import com.esun.library.models.repositorys.BookRepository;
+import com.esun.library.models.services.BookInventoryService;
 import com.esun.library.models.services.BookService;
 
 @Controller
@@ -18,6 +20,9 @@ public class BookController {
 
 	@Autowired
 	private BookService bookService;
+	
+	@Autowired
+	private BookInventoryService bookInventoryService;
 	
 	@Autowired
 	private BookRepository bookRepository;
@@ -46,6 +51,8 @@ public class BookController {
 	@GetMapping("/book/bookAll")
 	public String showAllBook(Model model) {
 		List<Book> findAllBook = bookService.findAllBook();
+		List<BookInventory> findAllBookInventory = bookInventoryService.findAllBookInventory();
+		model.addAttribute("bookInventoryList",findAllBookInventory);
 		model.addAttribute("bookList",findAllBook);
 		return "/book/bookAll";
 		
