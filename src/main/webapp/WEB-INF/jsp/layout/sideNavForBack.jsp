@@ -126,8 +126,7 @@
 									href="${pageContext.request.contextPath}/book/addBookInventory">新增書籍庫存狀態</a>
 								<a class="nav-link"
 									href="${pageContext.request.contextPath}/book/bookInventoryAll">查詢書籍庫存狀態</a>
-								<a class="nav-link"
-									href="${pageContext.request.contextPath}/book/editBookInventory">修改書籍庫存狀態</a>
+								
 							</nav>
 
 
