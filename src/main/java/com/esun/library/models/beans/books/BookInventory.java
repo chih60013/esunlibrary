@@ -35,16 +35,16 @@ public class BookInventory {
 	private Date bookPurchaseDate;
 //	書籍購買日期
 
-//	@ManyToOne(cascade = CascadeType.PERSIST)
-//	@JoinColumn(name = "fk_bookStatusId", nullable = false)
-//    private BookStatus bookStatus;
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "fk_bookStatusId", nullable = false)
+    private BookStatus bookStatus;
 	//串接  多對一  書籍狀態表
 	
 	
 	
-//	@ManyToOne(cascade = CascadeType.PERSIST)
-//	@JoinColumn(name = "fk_bookISBN" , nullable = false)
-//	private Book book;
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "fk_bookISBN" , nullable = false)
+	private Book book;
 	//串接  多對一  書籍基本資訊
 
 
@@ -73,27 +73,27 @@ public class BookInventory {
 
 
 
-//	public BookStatus getBookStatus() {
-//		return bookStatus;
-//	}
-//
-//
-//
-//	public void setBookStatus(BookStatus bookStatus) {
-//		this.bookStatus = bookStatus;
-//	}
+	public BookStatus getBookStatus() {
+		return bookStatus;
+	}
 
 
 
-//	public Book getBook() {
-//		return book;
-//	}
-//
-//
-//
-//	public void setBook(Book book) {
-//		this.book = book;
-//	}
+	public void setBookStatus(BookStatus bookStatus) {
+		this.bookStatus = bookStatus;
+	}
+
+
+
+	public Book getBook() {
+		return book;
+	}
+
+
+
+	public void setBook(Book book) {
+		this.book = book;
+	}
 
 	
 	
