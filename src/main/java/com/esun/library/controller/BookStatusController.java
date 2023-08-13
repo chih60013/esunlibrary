@@ -27,7 +27,7 @@ public class BookStatusController {
 	// 新增書籍狀態
 	@GetMapping("/book/addBookStatus")
 	public String addBookStatus(BookStatus bookStatus, Model model) {
-		model.addAttribute("bookStatus", bookStatus);
+		model.addAttribute("bookStatus", new BookStatus());
 		return "book/addBookStatus";
 	}
 

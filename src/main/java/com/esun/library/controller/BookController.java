@@ -26,7 +26,7 @@ public class BookController {
 	//新增書籍資料
 	@GetMapping("/book/addBook")
 	public String addBook(Book book , Model model) {
-		model.addAttribute("book",book);
+		model.addAttribute("book",new Book());
 		return "book/addBook";
 		
 	}

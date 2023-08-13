@@ -15,23 +15,22 @@ public class MemberService {
 	@Autowired
 	private MemberRepository memberRepository;
 
-	// 檢查電話號碼是否重複
+	
+	
 	public boolean isAccountDuplicate(String memberPhoneNumber) {
-		// 在 Repository 中查詢是否有相同的帳號（電話號碼）
-		Optional<Member> existingMember = memberRepository.findByMemberPhoneNumber(memberPhoneNumber);
-		return existingMember != null; // 如果存在，則帳號重複
-	}
+        Optional<Member> existingMember = memberRepository.findByMemberPhoneNumber(memberPhoneNumber);
+        return existingMember.isPresent(); // 如果存在，則帳號重複
+    }
 
-	// 新增會員
-	public void addMember(Member member) {
-		if (isAccountDuplicate(member.getMemberPhoneNumber())) {
-			
-		} else {
-
-			memberRepository.save(member);
-		}
-		;
-	}
+    public void addMember(Member member) {
+        if (isAccountDuplicate(member.getMemberPhoneNumber())) {
+            throw new RuntimeException("輸入號碼重複，已註冊過，請重新確認"); 
+        } else {
+            memberRepository.save(member);
+        }
+    }
+	
+	
 
 	// 找尋所有會員
 	public List<Member> findAllMember() {
