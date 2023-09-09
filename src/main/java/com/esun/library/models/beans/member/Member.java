@@ -40,7 +40,8 @@ public class Member {
     @Column(name="member_Name", columnDefinition = "nvarchar(30)",nullable = false)
     private String memberName; 
 	
-
+	@Column(name="member_Verification")
+	private String verification;
 
     @Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
@@ -129,6 +130,16 @@ public class Member {
 	}
 	
 	
+	public String getVerification() {
+		return verification;
+	}
+
+
+	public void setVerification(String verification) {
+		this.verification = verification;
+	}
+
+
 	public Member() {
 		// TODO Auto-generated constructor stub
 	}

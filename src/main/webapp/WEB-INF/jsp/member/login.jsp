@@ -45,43 +45,47 @@ body {
 					<div class="card-body">
 						<form:form method="POST" modelAttribute="member"
 							action="${contextRoot}/member/login">
-
-
 							<c:if test="${not empty error}">
 								<div class="alert alert-danger" role="alert">${error}</div>
 							</c:if>
+						
 							<div class="form-group">
 								<label for="memberPhoneNumber">帳號(手機號碼)：</label>
-								<form:input path="memberPhoneNumber" id="memberPhoneNumber" cssClass="form-control"
-									required="required" />
+								<form:input path="memberPhoneNumber" id="memberPhoneNumber"
+									cssClass="form-control" required="required" />
 							</div>
 							<div class="form-group">
 								<label for="memberPassword">密碼：</label>
 								<form:password path="memberPassword" id="memberPassword"
 									cssClass="form-control" required="required" />
 							</div>
+							<div class="form-group">
+								<label for="verification">驗證碼：</label>
+								<form:input path="verification" type="text" required="true" />
+								<img src="${contextRoot}/member/generateImage" alt="驗證碼" />
+							</div>
 							<input type="submit" class="btn btn-info btn-block" value="登入">
 						</form:form>
 					</div>
+
+					<p class="text-center">
+						還沒有帳號？<a href="${contextRoot}/member/register">立即註冊</a>
+					</p>
+
 				</div>
-				<p class="text-center">
-					還沒有帳號？<a href="${contextRoot}/member/register">立即註冊</a>
-				</p>
-				
 			</div>
 		</div>
-	</div>
 
-	<!-- jQuery -->
-	<script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
-	<!-- Bootstrap JavaScript -->
-	<script
-		src="https://cdn.staticfile.org/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
-	<script type="text/javascript">
-		function memberNull() {
-			alert("<c:out value='${msg}'/>")
-		}
-	</script>
+		<!-- jQuery -->
+		<script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
+		<!-- Bootstrap JavaScript -->
+		<script
+			src="https://cdn.staticfile.org/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+			function memberNull() {
+				alert("<c:out value='${msg}'/>")
+			}
+		</script>
 </body>
 
 </html>

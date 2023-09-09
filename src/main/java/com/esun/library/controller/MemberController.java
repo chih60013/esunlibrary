@@ -1,10 +1,15 @@
 package com.esun.library.controller;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +18,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.esun.library.models.beans.member.Member;
+import com.esun.library.models.beans.member.Verification;
 import com.esun.library.models.repositorys.MemberRepository;
 import com.esun.library.models.services.MemberService;
 
@@ -27,7 +35,15 @@ public class MemberController {
 	@Autowired
 	private MemberRepository memberRepository;
 
+	@Autowired
+	private Verification verification;
 	
+
+	    @Autowired
+	    public MemberController(Verification verification) {
+	        this.verification = verification;
+	    }
+
 //	註冊會員	
 	 @GetMapping("/member/register")
 	    public String addMember(Member member, Model model) {
@@ -67,14 +83,28 @@ public class MemberController {
 			session.setAttribute("previousUrl", previousUrl);
 		}
 		model.addAttribute("member", new Member());
+//		 String captcha = Verification.generateRandomCaptcha();
+//		    session.setAttribute("verification", captcha);
 		return "member/login";
 
 	}
 
 	@PostMapping("/member/login")
-	public String postLoginMember(@ModelAttribute("member") Member member, Model model, HttpSession session,
+	public String postLoginMember(@ModelAttribute("member") Member member,@RequestParam("verification") String userVerification, Model model, HttpSession session,
 			HttpServletRequest request) {
 		Optional<Member> memberOpt = memberRepository.findByMemberPhoneNumber(member.getMemberPhoneNumber());
+	    
+		
+		// 获取 session 中存储的验证码
+	    String actualVerification = (String) session.getAttribute("verification");
+	    System.out.println(userVerification);
+	    System.out.println(actualVerification);
+		
+		if (!userVerification.equals(actualVerification)) {
+		    // 驗證碼不匹配，返回錯誤消息
+		    model.addAttribute("error", "驗證碼錯誤");
+		    return "member/login"; // 返回登入頁面
+		}
 		if (memberOpt.isPresent() && memberOpt.get().getMemberPassword().equals(member.getMemberPassword())) {
 			session.setAttribute("member", memberOpt.get());
 
@@ -114,6 +144,32 @@ public class MemberController {
 
 	}
 
+	
+	//驗證器
+	@GetMapping("/member/generate")
+    @ResponseBody
+    public String generateCaptcha() {
+        // 使用Verification類的generateRandomCaptcha方法生成隨機驗證碼
+        String captcha = Verification.generateRandomCaptcha();
+        return captcha;
+    }
+
+    @GetMapping("/member/generateImage")
+    public void generateCaptchaImage(HttpServletResponse response, HttpSession session) throws IOException {
+        // 使用Verification類的generateCaptchaImage方法生成驗證碼圖像
+        String captcha = Verification.generateRandomCaptcha();   //這邊就會產生驗證碼了   用變數 captcha 承接
+        BufferedImage image = Verification.generateCaptchaImage(captcha);
+
+        // 將圖像寫入HttpServletResponse
+        response.setContentType("image/png");
+        OutputStream outputStream = response.getOutputStream();
+        ImageIO.write(image, "png", outputStream);
+        
+        // 存储验证码到HttpSession
+        session.setAttribute("verification", captcha);
+        outputStream.close();
+    }
+	
 	public MemberController() {
 		// TODO Auto-generated constructor stub
 	}

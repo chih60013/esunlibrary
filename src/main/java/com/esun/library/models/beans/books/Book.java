@@ -33,7 +33,7 @@ public class Book {
 	
 	
 	@OneToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "fk_bookInventoryId"  )
+	@JoinColumn(name = "fk_bookInventoryId")
 	private BookInventory bookInventory;
 	//串接  多對一  書籍庫存狀態資訊
 	

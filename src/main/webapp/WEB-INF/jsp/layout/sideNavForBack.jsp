@@ -93,6 +93,10 @@
 									href="${pageContext.request.contextPath}/member/register">註冊會員</a>
 								<a class="nav-link"
 									href="${pageContext.request.contextPath}/member/memberAll">查看會員</a>
+									<a class="nav-link"
+									href="${pageContext.request.contextPath}/member/login">登入會員</a>
+									<a class="nav-link"
+									href="${pageContext.request.contextPath}/member/generateImage">登入會員(含驗證器)</a>
 							</nav>
 
 

@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
-	<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
-	
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +28,7 @@
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<!-- Navbar Brand-->
-	
+
 		<!-- ======= SiderNav =======  已匯入新的檔案-->
 		<jsp:include page="../layout/sideNavForBack.jsp"></jsp:include>
 		<!-- End SiderNav -->
@@ -38,11 +38,11 @@
 
 
 		<!-- Navbar Search-->
-	
-		
+
+
 	</nav>
 	<div id="layoutSidenav">
-	
+
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
@@ -56,30 +56,42 @@
 								<div class="card-body">註冊會員</div>
 								<div
 									class="card-footer d-flex align-items-center justify-content-between">
-									<a class="small text-white stretched-link" href="${contextRoot}/member/register">點選後，請使用滑鼠滾輪往下滾</a>
+									<a class="small text-white stretched-link"
+										href="${contextRoot}/member/register">點選後，請使用滑鼠滾輪往下滾</a>
 									<div class="small text-white">
 										<i class="fas fa-angle-right"></i>
 									</div>
 								</div>
 							</div>
 						</div>
-						
+						<div class="col-xl-3 col-md-6">
+							<div class="card bg-warning text-white mb-4">
+								<div class="card-body">會員登入</div>
+								<div
+									class="card-footer d-flex align-items-center justify-content-between">
+									<a class="small text-white stretched-link" href="${contextRoot}/member/login">點選此處可登入會員</a>
+									<div class="small text-white">
+										<i class="fas fa-angle-right"></i>
+									</div>
+								</div>
+							</div>
+						</div>
 						<div class="col-xl-3 col-md-6">
 							<div class="card bg-success text-white mb-4">
 								<div class="card-body">查看全館書籍</div>
 								<div
 									class="card-footer d-flex align-items-center justify-content-between">
-									<a class="small text-white stretched-link" href="${contextRoot}/book/bookInventoryAll">View
-										Details</a>
+									<a class="small text-white stretched-link"
+										href="${contextRoot}/book/bookInventoryAll">View Details</a>
 									<div class="small text-white">
 										<i class="fas fa-angle-right"></i>
 									</div>
 								</div>
 							</div>
 						</div>
-				
+
 					</div>
-					
+
 					<div class="card mb-4">
 						<div class="card-header">
 							<i class="fas fa-table me-1"></i> 假裝這邊是大量書籍
