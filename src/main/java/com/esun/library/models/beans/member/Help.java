@@ -80,17 +80,22 @@ public class Help {
 	 * "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 	 * "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 	 * 
-	 * <hibernate-mapping> 
-	 * <class name="com.example.Member" table="member"> 
-	 * 	<idname="memberId" column="member_Id"> 
-	 * 			<generator class="identity" /> 
-	 * 		</id>
-	 * <property name="memberPhoneNumber" column="member_PhoneNumber"not-null="true" unique="true" /> 
-	 * 	</class> 
-	 * </hibernate-mapping>
+	 * <hibernate-mapping> <class name="com.example.Member" table="member">
+	 * <idname="memberId" column="member_Id"> <generator class="identity" /> </id>
+	 * <property name="memberPhoneNumber" column="member_PhoneNumber"not-null="true"
+	 * unique="true" /> </class> </hibernate-mapping>
 	 *
-	 *
-	 *
+	 *9/27 
+	 *示範   最下面的沒什麼用處
+	 * public class MainApp { public static void main(String[] args) { // 初始化 Spring
+	 * 上下文 ApplicationContext context = new
+	 * ClassPathXmlApplicationContext("applicationContext.xml");
+	 * 
+	 * // 獲取 Member bean Member member = (Member) context.getBean("memberBean");
+	 * 
+	 * // 使用 Member bean System.out.println("Member Id: " + member.getMemberId());
+	 * System.out.println("Member Account: " + member.getMemberAccount());
+	 * System.out.println("Member Password: " + member.getMemberPassword()); } }
 	 *
 	 *
 	 *
