@@ -1,19 +1,26 @@
 package com.esun.library.controller;
 
+import java.util.Map;
+import java.util.HashMap;
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.esun.library.models.beans.books.Book;
-import com.esun.library.models.beans.books.BookInventory;
 import com.esun.library.models.repositorys.BookRepository;
 import com.esun.library.models.services.BookInventoryService;
 import com.esun.library.models.services.BookService;
+import com.esun.library.models.beans.books.BookInventory;
+
+
 
 @Controller
 public class BookController {
@@ -29,13 +36,14 @@ public class BookController {
 	
 	
 	//新增書籍資料
+	@CrossOrigin
 	@GetMapping("/book/addBook")
 	public String addBook(Book book , Model model) {
 		model.addAttribute("book",new Book());
 		return "book/addBook";
 		
 	}
-	
+	@CrossOrigin
 	@PostMapping("/book/post")
 	public String postBook(@ModelAttribute("book") Book book,Model model) {
 		
@@ -47,17 +55,34 @@ public class BookController {
 	
 	
 	
-	//讀取所有書本資料
-	@GetMapping("/book/bookAll")
-	public String showAllBook(Model model) {
-		List<Book> findAllBook = bookService.findAllBook();
-		List<BookInventory> findAllBookInventory = bookInventoryService.findAllBookInventory();
-		model.addAttribute("bookInventoryList",findAllBookInventory);
-		model.addAttribute("bookList",findAllBook);
-		return "/book/bookAll";
-		
-	}
+	//讀取所有書本資料  原先能動的 嘗試先隱藏
+//	@CrossOrigin(origins = "http://localhost:8080")
+//	@GetMapping("/book/bookAll")
+//	public String showAllBook(Model model) {
+//		List<Book> findAllBook = bookService.findAllBook();
+//		List<BookInventory> findAllBookInventory = bookInventoryService.findAllBookInventory();
+//		model.addAttribute("bookInventoryList",findAllBookInventory);
+//		model.addAttribute("bookList",findAllBook);
+//		return "/book/bookAll";
+//		
+//	}
+//	
 	
+	//使用gpt 撰寫
+	@CrossOrigin(origins = "http://localhost:8080")
+	@PostMapping("/book/bookAll")
+	public ResponseEntity<Map<String, Object>> showAllBook() {
+	    Map<String, Object> response = new HashMap<>();
+	    List<Book> findAllBook = bookService.findAllBook();
+	    List<BookInventory> findAllBookInventory = bookInventoryService.findAllBookInventory();
+	    
+	    // 將數據添加到回應中
+	    response.put("bookList", findAllBook);
+	    response.put("bookInventoryList", findAllBookInventory);
+	    
+	    // 返回JSON格式的數據
+	    return ResponseEntity.ok(response);
+	}
 	
 	
 	
