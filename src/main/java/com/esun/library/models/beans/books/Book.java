@@ -155,4 +155,12 @@ public class Book {
 		// TODO Auto-generated constructor stub
 	}
 
+
+
+
+	public boolean isBorrowed() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

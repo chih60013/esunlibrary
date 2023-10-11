@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.esun.library.models.beans.books.Book;
@@ -87,7 +88,25 @@ public class BookController {
 	
 	
 	
-	
+	@PostMapping("/borrow/{bookId}")
+	public ResponseEntity<String> borrowBook(@PathVariable String bookISBN) {
+	    // 根据 bookId 查询书籍
+	    Book book = bookRepository.findById(bookISBN).orElse(null);
+	    
+	    if (book == null) {
+	        return ResponseEntity.notFound().build();
+	    }
+
+	    if (book.isBorrowed()) {
+	        return ResponseEntity.badRequest().body("该书籍已被借出");
+	    }
+
+	    // 更新书籍的借阅状态
+	    book.setBorrowed(true);
+	    bookRepository.save(book);
+
+	    return ResponseEntity.ok("借阅成功");
+	}
 	
 	
 	
